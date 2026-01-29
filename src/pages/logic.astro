@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Layout 
+  title="Logic Dimension - Graviton"
+  description="Digital logic simulation with gate-level accuracy. Build circuits, CPUs, and entire computing systems."
+>
+  <section class="min-h-screen flex items-center justify-center py-24">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-blue/30 bg-void-black/50 backdrop-blur-sm mb-8">
+          <span class="text-2xl">⚡</span>
+          <span class="text-sm font-mono text-text-secondary tracking-wider">DIMENSION: LOGIC</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+          <span class="text-gradient-blue">Digital Logic</span>
+          <span class="text-text-primary"> Simulation</span>
+        </h1>
+
+        <p class="text-xl text-text-secondary max-w-2xl mx-auto mb-12 leading-relaxed">
+          Gate-level accurate simulation of digital circuits. From basic logic gates to complete CPU architectures. 
+          Perfect timing analysis with propagation delays down to picoseconds.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">🔌</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Gate Library</h3>
+            <p class="text-text-muted text-sm">AND, OR, XOR, NAND, NOR, NOT, buffers, and custom gates</p>
+          </div>
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">⏱️</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Timing Analysis</h3>
+            <p class="text-text-muted text-sm">Propagation delays, setup/hold times, clock domains</p>
+          </div>
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">🔄</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Sequential Logic</h3>
+            <p class="text-text-muted text-sm">Flip-flops, registers, state machines, memory cells</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button href="https://app.graviton.dev/logic" variant="primary" size="lg">
+            Open Logic Simulator
+          </Button>
+          <Button href="/docs" variant="secondary" size="lg">
+            Documentation
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

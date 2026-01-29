@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* ============================================
+   EVENT HORIZON - Cyberpunk Scientific Theme
+   Design Tokens (Shared with System B / Rust)
+   ============================================ */
+
+@theme {
+  /* Brand Colors - MUST match System B (ez_ui crate) */
+  --color-neon-blue: #00F0FF;
+  --color-neon-pink: #FF00FF;
+  --color-neon-green: #00FF88;
+  --color-neon-orange: #FF6B00;
+  
+  /* Void Palette */
+  --color-void-black: #0B0B0B;
+  --color-void-dark: #121218;
+  --color-void-gray: #1A1A24;
+  --color-void-light: #2A2A3A;
+  
+  /* Text Colors */
+  --color-text-primary: #F0F0F5;
+  --color-text-secondary: #A0A0B0;
+  --color-text-muted: #606070;
+  
+  /* Accent Colors */
+  --color-accent-primary: var(--color-neon-blue);
+  --color-accent-secondary: var(--color-neon-pink);
+  --color-accent-success: var(--color-neon-green);
+  --color-accent-warning: var(--color-neon-orange);
+  
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Spacing */
+  --spacing-section: 6rem;
+  
+  /* Animations */
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-pulse-neon: pulse-neon 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px var(--color-neon-blue), 0 0 40px rgba(0, 240, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px var(--color-neon-blue), 0 0 60px rgba(0, 240, 255, 0.5);
+  }
+}
+
+@keyframes pulse-neon {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Base Styles */
+html {
+  background-color: var(--color-void-black);
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(0, 240, 255, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-void-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-void-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-blue);
+}
+
+/* Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-neon-blue);
+  outline-offset: 2px;
+}

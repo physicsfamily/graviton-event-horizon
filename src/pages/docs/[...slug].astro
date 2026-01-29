@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map(doc => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await doc.render();
+
+const allDocs = await getCollection('docs');
+const sortedDocs = allDocs.sort((a, b) => a.data.order - b.data.order);
+const currentIndex = sortedDocs.findIndex(d => d.slug === doc.slug);
+const prevDoc = currentIndex > 0 ? sortedDocs[currentIndex - 1] : null;
+const nextDoc = currentIndex < sortedDocs.length - 1 ? sortedDocs[currentIndex + 1] : null;
+---
+
+<Layout title={doc.data.title} description={doc.data.description}>
+  <section class="pt-32 pb-24">
+    <div class="mx-auto max-w-4xl px-6">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-sm">
+          <li>
+            <a href="/docs" class="text-text-muted hover:text-neon-blue transition-colors">Docs</a>
+          </li>
+          <li class="text-text-muted">/</li>
+          <li class="text-text-secondary">{doc.data.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Header -->
+      <header class="mb-12">
+        <h1 class="text-4xl font-bold text-text-primary">{doc.data.title}</h1>
+        <p class="mt-4 text-lg text-text-secondary">{doc.data.description}</p>
+        {doc.data.updatedDate && (
+          <p class="mt-4 text-sm text-text-muted">
+            Last updated: {doc.data.updatedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        )}
+      </header>
+
+      <!-- Content -->
+      <article class="prose prose-invert prose-lg max-w-none
+        prose-headings:text-text-primary prose-headings:font-bold
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-text-secondary prose-p:leading-relaxed
+        prose-a:text-neon-blue prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-text-primary
+        prose-code:text-neon-pink prose-code:bg-void-gray prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-void-gray prose-pre:border prose-pre:border-void-light
+        prose-ul:text-text-secondary prose-ol:text-text-secondary
+        prose-li:marker:text-neon-blue
+      ">
+        <Content />
+      </article>
+
+      <!-- Navigation -->
+      <nav class="mt-16 pt-8 border-t border-void-light flex justify-between gap-4">
+        {prevDoc ? (
+          <a href={`/docs/${prevDoc.slug}`} class="group flex-1 rounded-xl border border-void-light bg-void-gray/50 p-4 hover:border-neon-blue/50 transition-all">
+            <div class="text-sm text-text-muted mb-1">Previous</div>
+            <div class="font-semibold text-text-primary group-hover:text-neon-blue transition-colors">
+              ← {prevDoc.data.title}
+            </div>
+          </a>
+        ) : <div class="flex-1" />}
+        
+        {nextDoc ? (
+          <a href={`/docs/${nextDoc.slug}`} class="group flex-1 rounded-xl border border-void-light bg-void-gray/50 p-4 hover:border-neon-blue/50 transition-all text-right">
+            <div class="text-sm text-text-muted mb-1">Next</div>
+            <div class="font-semibold text-text-primary group-hover:text-neon-blue transition-colors">
+              {nextDoc.data.title} →
+            </div>
+          </a>
+        ) : <div class="flex-1" />}
+      </nav>
+    </div>
+  </section>
+</Layout>

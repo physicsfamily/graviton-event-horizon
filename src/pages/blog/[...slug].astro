@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description} image={post.data.heroImage}>
+  <article class="pt-32 pb-24">
+    <div class="mx-auto max-w-3xl px-6">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-sm">
+          <li>
+            <a href="/blog" class="text-text-muted hover:text-neon-blue transition-colors">Blog</a>
+          </li>
+          <li class="text-text-muted">/</li>
+          <li class="text-text-secondary truncate max-w-[200px]">{post.data.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Header -->
+      <header class="mb-12">
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {post.data.tags.map((tag) => (
+              <span class="text-xs px-2 py-1 rounded-full bg-neon-blue/10 text-neon-blue border border-neon-blue/30">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-text-primary leading-tight">
+          {post.data.title}
+        </h1>
+        
+        <p class="mt-4 text-xl text-text-secondary">
+          {post.data.description}
+        </p>
+        
+        <div class="flex items-center gap-4 mt-8 pt-8 border-t border-void-light">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-neon-blue to-neon-pink flex items-center justify-center text-void-black font-bold">
+            {post.data.author.charAt(0)}
+          </div>
+          <div>
+            <div class="font-semibold text-text-primary">{post.data.author}</div>
+            <div class="text-sm text-text-muted">
+              <time datetime={post.data.publishDate.toISOString()}>
+                {post.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Image -->
+      {post.data.heroImage && (
+        <div class="mb-12 rounded-2xl overflow-hidden border border-void-light">
+          <img 
+            src={post.data.heroImage} 
+            alt={post.data.title}
+            class="w-full"
+          />
+        </div>
+      )}
+
+      <!-- Content -->
+      <div class="prose prose-invert prose-lg max-w-none
+        prose-headings:text-text-primary prose-headings:font-bold
+        prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-text-secondary prose-p:leading-relaxed
+        prose-a:text-neon-blue prose-a:no-underline hover:prose-a:underline
+        prose-strong:text-text-primary
+        prose-code:text-neon-pink prose-code:bg-void-gray prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+        prose-pre:bg-void-gray prose-pre:border prose-pre:border-void-light
+        prose-ul:text-text-secondary prose-ol:text-text-secondary
+        prose-li:marker:text-neon-blue
+      ">
+        <Content />
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-16 pt-8 border-t border-void-light">
+        <a 
+          href="/blog"
+          class="inline-flex items-center gap-2 text-text-secondary hover:text-neon-blue transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+          </svg>
+          Back to Blog
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,103 @@
+---
+interface Props {
+  appUrl: string;
+}
+
+const { appUrl } = Astro.props;
+
+const navLinks = [
+  { href: '/docs', label: 'Documentation' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/pricing', label: 'Pricing' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-void-light/50 bg-void-black/80 backdrop-blur-xl">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="relative h-8 w-8">
+        <div class="absolute inset-0 rounded-lg bg-gradient-to-br from-neon-blue to-neon-pink opacity-80 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute inset-[2px] rounded-md bg-void-black flex items-center justify-center">
+          <span class="text-neon-blue font-bold text-sm">EZ</span>
+        </div>
+      </div>
+      <span class="font-semibold text-lg text-text-primary">
+        Entropy<span class="text-neon-blue">Zero</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class:list={[
+            "text-sm font-medium transition-colors hover:text-neon-blue",
+            currentPath.startsWith(link.href) ? "text-neon-blue" : "text-text-secondary"
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex items-center gap-4">
+      <a 
+        href={appUrl}
+        class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-neon-blue to-neon-pink px-4 py-2 text-sm font-semibold text-void-black transition-all hover:shadow-lg hover:shadow-neon-blue/25"
+      >
+        Launch Simulation
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-toggle"
+        class="md:hidden p-2 text-text-secondary hover:text-text-primary"
+        aria-label="Toggle menu"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-void-light/50 bg-void-dark">
+    <div class="px-6 py-4 space-y-4">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class:list={[
+            "block text-sm font-medium transition-colors hover:text-neon-blue",
+            currentPath.startsWith(link.href) ? "text-neon-blue" : "text-text-secondary"
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a 
+        href={appUrl}
+        class="block w-full text-center rounded-lg bg-gradient-to-r from-neon-blue to-neon-pink px-4 py-2 text-sm font-semibold text-void-black"
+      >
+        Launch Simulation
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

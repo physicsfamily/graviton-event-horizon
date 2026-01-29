@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Layout 
+  title="Neural Dimension - Graviton"
+  description="Neural network and brain simulation. Spiking neurons, connectomes, and cognitive architectures."
+>
+  <section class="min-h-screen flex items-center justify-center py-24">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-orange/30 bg-void-black/50 backdrop-blur-sm mb-8">
+          <span class="text-2xl">🧠</span>
+          <span class="text-sm font-mono text-text-secondary tracking-wider">DIMENSION: NEURAL</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+          <span class="text-gradient-orange">Neural Network</span>
+          <span class="text-text-primary"> Simulation</span>
+        </h1>
+
+        <p class="text-xl text-text-secondary max-w-2xl mx-auto mb-12 leading-relaxed">
+          Biologically accurate spiking neural networks. Model brain regions, connectomes, and emergent cognition. 
+          From single neurons to whole-brain simulation.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">⚡</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Spiking Neurons</h3>
+            <p class="text-text-muted text-sm">Hodgkin-Huxley, LIF, Izhikevich neuron models</p>
+          </div>
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">🔗</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Synaptic Plasticity</h3>
+            <p class="text-text-muted text-sm">STDP, hebbian learning, neuromodulation</p>
+          </div>
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">🌐</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Connectomes</h3>
+            <p class="text-text-muted text-sm">C. elegans, Drosophila, and custom network topologies</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button href="https://app.graviton.dev/neural" variant="primary" size="lg">
+            Open Neural Simulator
+          </Button>
+          <Button href="/docs" variant="secondary" size="lg">
+            Documentation
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

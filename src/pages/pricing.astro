@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+
+const plans = [
+  {
+    name: 'Starter',
+    price: 'Free',
+    period: 'forever',
+    description: 'Perfect for learning and experimentation.',
+    features: [
+      'Up to 10,000 particles',
+      'Basic physics solvers',
+      'Community support',
+      'Open-source integrations',
+    ],
+    cta: 'Get Started',
+    variant: 'secondary' as const,
+    highlighted: false,
+  },
+  {
+    name: 'Professional',
+    price: '$49',
+    period: '/month',
+    description: 'For serious researchers and developers.',
+    features: [
+      'Up to 1M particles',
+      'Advanced physics solvers',
+      'GPU acceleration',
+      'Priority support',
+      'Custom integrators',
+      'Data export (HDF5, VTK)',
+    ],
+    cta: 'Start Free Trial',
+    variant: 'primary' as const,
+    highlighted: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    description: 'For organizations with demanding requirements.',
+    features: [
+      'Unlimited particles',
+      'Distributed simulation',
+      'Dedicated support',
+      'Custom development',
+      'SLA guarantee',
+      'On-premise deployment',
+    ],
+    cta: 'Contact Sales',
+    variant: 'secondary' as const,
+    highlighted: false,
+  },
+];
+---
+
+<Layout title="Pricing" description="Simple, transparent pricing for teams of all sizes.">
+  <section class="pt-32 pb-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-text-primary">
+          Simple, Transparent <span class="text-neon-blue">Pricing</span>
+        </h1>
+        <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+          Start free, scale as you grow. No hidden fees, no surprises.
+        </p>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {plans.map((plan) => (
+          <div class:list={[
+            "relative rounded-2xl border p-8 flex flex-col",
+            plan.highlighted 
+              ? "border-neon-blue bg-gradient-to-b from-neon-blue/10 to-transparent shadow-lg shadow-neon-blue/20" 
+              : "border-void-light bg-void-gray/50"
+          ]}>
+            {plan.highlighted && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-neon-blue to-neon-pink px-4 py-1 text-xs font-semibold text-void-black">
+                Most Popular
+              </div>
+            )}
+            
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-text-primary">{plan.name}</h3>
+              <div class="mt-4 flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-text-primary">{plan.price}</span>
+                {plan.period && <span class="text-text-muted">{plan.period}</span>}
+              </div>
+              <p class="mt-2 text-sm text-text-secondary">{plan.description}</p>
+            </div>
+
+            <ul class="space-y-3 mb-8 flex-1">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-3 text-sm text-text-secondary">
+                  <svg class="w-5 h-5 text-neon-green flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <Button variant={plan.variant} class="w-full">
+              {plan.cta}
+            </Button>
+          </div>
+        ))}
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="mt-24 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-text-primary text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        
+        <div class="space-y-6">
+          <div class="border-b border-void-light pb-6">
+            <h3 class="text-lg font-semibold text-text-primary mb-2">
+              Can I switch plans later?
+            </h3>
+            <p class="text-text-secondary">
+              Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.
+            </p>
+          </div>
+          
+          <div class="border-b border-void-light pb-6">
+            <h3 class="text-lg font-semibold text-text-primary mb-2">
+              Is there a free trial for Professional?
+            </h3>
+            <p class="text-text-secondary">
+              Yes, we offer a 14-day free trial of the Professional plan. No credit card required to start.
+            </p>
+          </div>
+          
+          <div class="border-b border-void-light pb-6">
+            <h3 class="text-lg font-semibold text-text-primary mb-2">
+              What counts as a "particle"?
+            </h3>
+            <p class="text-text-secondary">
+              A particle is any simulated entity with physics properties. This includes point masses, rigid bodies, and soft body vertices.
+            </p>
+          </div>
+          
+          <div class="pb-6">
+            <h3 class="text-lg font-semibold text-text-primary mb-2">
+              Do you offer academic discounts?
+            </h3>
+            <p class="text-text-secondary">
+              Yes! We offer 50% off Professional plans for verified academic institutions. Contact us with your .edu email.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

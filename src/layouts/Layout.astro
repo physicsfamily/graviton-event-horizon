@@ -1,0 +1,70 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+import Navbar from '../components/ui/Navbar.astro';
+import Footer from '../components/ui/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description = "Entropy Zero - Next-generation physics simulation engine powered by Rust",
+  image = "/og-image.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const isProduction = import.meta.env.PROD;
+const appUrl = isProduction ? "https://app.yourdomain.com" : "http://localhost:8080";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Preconnect to font providers -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title} | Event Horizon</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0B0B0B" />
+    
+    <!-- View Transitions for SPA-like navigation -->
+    <ViewTransitions />
+  </head>
+  <body class="min-h-screen bg-void-black text-text-primary flex flex-col">
+    <Navbar appUrl={appUrl} />
+    
+    <main class="flex-1">
+      <slot />
+    </main>
+    
+    <Footer />
+  </body>
+</html>

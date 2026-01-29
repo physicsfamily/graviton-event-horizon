@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Layout 
+  title="Axiom Dimension - Graviton"
+  description="Mathematical foundations and formal systems. Category theory, type theory, and proof assistants."
+>
+  <section class="min-h-screen flex items-center justify-center py-24">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-text-muted/30 bg-void-black/50 backdrop-blur-sm mb-8">
+          <span class="text-2xl">∞</span>
+          <span class="text-sm font-mono text-text-secondary tracking-wider">DIMENSION: AXIOM</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+          <span class="text-gradient-blue">Mathematical</span>
+          <span class="text-text-primary"> Foundations</span>
+        </h1>
+
+        <p class="text-xl text-text-secondary max-w-2xl mx-auto mb-12 leading-relaxed">
+          Explore the mathematical foundations underlying all simulations. Category theory for composable systems, 
+          type theory for correctness, and formal verification for trust.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">📐</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Category Theory</h3>
+            <p class="text-text-muted text-sm">Functors, monads, and composable transformations</p>
+          </div>
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">🔤</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Type Systems</h3>
+            <p class="text-text-muted text-sm">Dependent types, linear types, and effect systems</p>
+          </div>
+          <div class="p-6 rounded-xl border border-void-light bg-void-dark/50">
+            <div class="text-3xl mb-4">✓</div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2">Formal Proofs</h3>
+            <p class="text-text-muted text-sm">Verified correctness for critical simulations</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button href="https://app.graviton.dev/axiom" variant="primary" size="lg">
+            Explore Axiom
+          </Button>
+          <Button href="/docs" variant="secondary" size="lg">
+            Documentation
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
