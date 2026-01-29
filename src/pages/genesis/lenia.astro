@@ -1,0 +1,33 @@
+---
+import SimulationContainer from '../../components/simulation/SimulationContainer';
+import Lenia from '../../components/simulation/genesis/Lenia';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lenia - Continuous Cellular Automata. Watch mesmerizing digital lifeforms emerge from mathematical rules." />
+    <title>Lenia | Genesis Dimension | Graviton</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      @import '../../styles/global.css';
+    </style>
+  </head>
+  <body class="bg-void-black">
+    <SimulationContainer
+      client:load
+      id="sim-genesis-001"
+      title="Lenia: Continuous Life"
+      category="GENESIS"
+      complexity="HIGH"
+      description="Lenia is a continuous cellular automaton that produces life-like, self-organizing patterns. Unlike Conway's Game of Life, Lenia uses smooth kernels and continuous states, creating organic 'creatures' that move, reproduce, and evolve. Adjust the growth function parameters to discover new lifeforms."
+    >
+      <Lenia client:only="react" />
+    </SimulationContainer>
+  </body>
+</html>

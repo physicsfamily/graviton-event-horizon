@@ -44,12 +44,32 @@ import Button from '../components/ui/Button.astro';
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button href="https://app.graviton.dev/genesis" variant="primary" size="lg">
-            Open Life Simulator
+          <Button href="/genesis/lenia" variant="primary" size="lg">
+            Launch Lenia
           </Button>
           <Button href="/docs" variant="secondary" size="lg">
             Documentation
           </Button>
+        </div>
+
+        <div class="mt-16 pt-8 border-t border-void-light/30">
+          <h3 class="text-sm font-mono text-text-muted mb-6 tracking-wider">AVAILABLE SIMULATIONS</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="/genesis/lenia" class="group p-4 rounded-xl border border-void-light bg-void-dark/50 hover:border-neon-green/50 transition-all">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-xl">🦠</span>
+                <h4 class="font-semibold text-text-primary group-hover:text-neon-green transition-colors">Lenia: Continuous Life</h4>
+              </div>
+              <p class="text-sm text-text-muted">Mesmerizing continuous cellular automata. Digital lifeforms that move and evolve.</p>
+            </a>
+            <div class="p-4 rounded-xl border border-void-light/30 bg-void-dark/30 opacity-50">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-xl">🧬</span>
+                <h4 class="font-semibold text-text-muted">Evolutionary Arena</h4>
+              </div>
+              <p class="text-sm text-text-muted">Coming soon...</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,33 @@
+---
+import SimulationContainer from '../../components/simulation/SimulationContainer';
+import LogicGates from '../../components/simulation/logic/LogicGates';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Logic Gates with Audio Debugging - Hear the sound of digital logic. Each gate produces a unique tone when active." />
+    <title>Logic Gates | Logic Dimension | Graviton</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      @import '../../styles/global.css';
+    </style>
+  </head>
+  <body class="bg-void-black">
+    <SimulationContainer
+      client:load
+      id="sim-logic-001"
+      title="The Singing Circuit"
+      category="LOGIC"
+      complexity="MEDIUM"
+      description="Experience digital logic through sound. Each logic gate in this circuit produces a unique frequency when its output is HIGH. Enable Audio Debugging to hear the 'singing circuit' - a novel way to debug and understand signal propagation through combinational logic."
+    >
+      <LogicGates client:only="react" />
+    </SimulationContainer>
+  </body>
+</html>
